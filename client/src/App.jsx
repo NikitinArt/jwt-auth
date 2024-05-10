@@ -7,9 +7,8 @@ import Demo from "./pages/Demo";
 import style from "./app.module.scss";
 import { AuthContext } from "./context/AuthContext";
 
-const App = () => {
+var App = () => {
 const { isUserLogged } = useContext(AuthContext);
-
   return (
     <div className={style.wrapper}>
       <SnackbarProvider />

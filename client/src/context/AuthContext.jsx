@@ -7,12 +7,12 @@ import showErrorMessage from "../utils/showErrorMessage";
 import inMemoryJWT from "../services/inMemoryJWT";
 
 export const AuthClient = axios.create({
-  baseURL: 'http://localhost:5000/auth',
+  baseURL: 'http://77.37.239.19:5000/auth',
   withCredentials: true,
 });
 
 const ResourceClient = axios.create({
-  baseURL: 'http://localhost:5000/resource',
+  baseURL: 'http://77.37.239.19:5000/resource',
 });
 
 ResourceClient.interceptors.request.use((config) => {

@@ -17,7 +17,17 @@ const app = express();
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
+
+// const allowedDomains = ["http://localhost:5173", "http://77.37.239.19:5173"]
+
+app.use((req,res, next)=>{
+    res.setHeader("Access-Control-Allow-Origin", "http://77.37.239.19:5173");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Max-Age", "1800");
+    res.setHeader("Access-Control-Allow-Headers", "Origin, Content-Type, Authorization, X-Api-Key, X-Requested-With, Accept");
+    res.setHeader("Access-Control-Allow-Methods","PUT, POST, GET, DELETE, PATCH, OPTIONS");
+    next();
+});
 
 app.use(
   Fingerprint({
@@ -28,7 +38,7 @@ app.use(
 app.use("/auth", AuthRootRouter);
 
 app.get("/resource/protected", TokenService.checkAccess, async (_, res) => {
-  if (users_role == 2){
+  if (users_role == 1){
     const users = await UserRepository.getUsers();
     const count = await UserRepository.getUserCount();
     let user1 = users[ (Math.floor(Math.random() * (count.count - 0)) + 0)].name;
