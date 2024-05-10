@@ -28,7 +28,7 @@ app.use(
 app.use("/auth", AuthRootRouter);
 
 app.get("/resource/protected", TokenService.checkAccess, async (_, res) => {
-  if (users_role == 2){
+  if (users_role == 1){
     const users = await UserRepository.getUsers();
     const count = await UserRepository.getUserCount();
     let user1 = users[ (Math.floor(Math.random() * (count.count - 0)) + 0)].name;
