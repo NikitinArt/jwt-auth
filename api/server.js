@@ -31,7 +31,16 @@ app.get("/resource/protected", TokenService.checkAccess, async (_, res) => {
   if (users_role == 2){
     const users = await UserRepository.getUsers();
     const count = await UserRepository.getUserCount();
-    return res.status(200).json("Пользователь в базе данных: " + users[ (Math.floor(Math.random() * (count.count - 0)) + 0)].name);
+    let user1 = users[ (Math.floor(Math.random() * (count.count - 0)) + 0)].name;
+    let user2 = users[ (Math.floor(Math.random() * (count.count - 0)) + 0)].name;
+    let user3 = users[ (Math.floor(Math.random() * (count.count - 0)) + 0)].name;
+    while ( user1 == user2){
+      user2 = users[ (Math.floor(Math.random() * (count.count - 0)) + 0)].name;
+    }
+    while (user3 == user1 || user3 == user2){
+      user3 = users[ (Math.floor(Math.random() * (count.count - 0)) + 0)].name;
+    }
+    return res.status(200).json("Список из имён 3 случайных пользователей: " + user1 + "  |||  " + user2 + "  |||  " + user3);
   }
   return res.status(200).json("Добро пожаловать!");
 });

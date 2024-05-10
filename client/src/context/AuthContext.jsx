@@ -78,7 +78,6 @@ useEffect(() => {
 
     setIsAppReady(true);
     setIsUserLogged(true);
-    //inMemoryJWT.setToken(accessToken, accessTokenExpiration);
 })
 .catch(() => {
   setIsAppReady(true);

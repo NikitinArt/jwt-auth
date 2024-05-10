@@ -33,16 +33,6 @@ class TokenService {
     }
 
     next();
-
-    //jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (error, user) => {
-
-   //   if (error) {
-     //   return next(new Unauthorized());
-     // }
-  
-     // req.user = user;
-    //  next();
-   // });
   }
 
   static async verifyAccessToken(accessToken){
